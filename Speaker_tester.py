@@ -18,7 +18,7 @@ def record_audio(duration=2, sr=16000):
     return audio
 
 def preprocess_audio_from_array(audio, sr=16000, n_mfcc=13, fixed_length=2):
-    y = librosa.util.fix_length(audio, size=sr * fixed_length)  # Ensure audio is 2 seconds
+    y = librosa.util.fix_length(audio, size=sr * fixed_length)
     mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)
     return mfccs
 
