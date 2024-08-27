@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify
-import os
 import librosa
 import numpy as np
 from tensorflow.keras.models import load_model
-import sounddevice as sd
 import soundfile as sf
 from io import BytesIO
 
@@ -52,7 +50,7 @@ def predict():
         if len(audio.shape) > 1:
             audio = audio[:, 0]
         
-        # Record a 2-second audio clip
+        # Predict command and speaker
         command_label, speaker_label = predict_from_audio(audio, model)
         
         # Get command and speaker names
