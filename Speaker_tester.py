@@ -3,6 +3,7 @@ import librosa
 import numpy as np
 from tensorflow.keras.models import load_model
 import sounddevice as sd
+import soundfile as sf
 
 # Define the commands and speakers
 commands = ['person', 'read']
