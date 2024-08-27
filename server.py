@@ -34,22 +34,23 @@ def predict_from_audio(audio, model):
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    print('Data received')
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     
     file = request.files['file']
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
-    
+    print('Trying')
     try:
         # Read the audio file
         audio_data = file.read()
         audio, sr = sf.read(BytesIO(audio_data))
-        
+        #
         # Ensure audio is mono
         if len(audio.shape) > 1:
             audio = audio[:, 0]
-        
+        print('Predicting')
         # Predict command and speaker
         command_label, speaker_label = predict_from_audio(audio, model)
         
